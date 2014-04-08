@@ -54,7 +54,7 @@ function award_form_alter(&$form, &$form_state, $form_id) {
 					'any' => '- Any -',
 					'open_soon' => 'Open soon',
 					'open' => 'Open',
-					'close' => 'Close',
+					'close' => 'Closed',
 				);
 		
 				$tmp_array = array(
@@ -78,9 +78,9 @@ function award_form_alter(&$form, &$form_state, $form_id) {
 			_reset_study_area_filter($form_state);
 		
 			// Set default award type search to prize
-	 		if(empty($_GET['field_award_type_value_1']))
+	 		if(empty($_GET['field_award_type_value']))
 	 		{
-				$form_state['input']['field_award_type_value_1'] = 'prize';
+				$form_state['input']['field_award_type_value'] = 'prize';
 			}
 			
 			_correct_form_action_url($form);
@@ -92,9 +92,9 @@ function award_form_alter(&$form, &$form_state, $form_id) {
 			_reset_study_area_filter($form_state);
 		
 			// Set default award type search to grant
-	 		if(empty($_GET['field_award_type_value_1']))
+	 		if(empty($_GET['field_award_type_value']))
 	 		{
-				$form_state['input']['field_award_type_value_1'] = 'grant';
+				$form_state['input']['field_award_type_value'] = 'grant';
 			}
 	 	}
  	}
