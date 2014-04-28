@@ -283,7 +283,8 @@ function _build_dropdown_option($input)
 		}
 		else
 		{
-			$option_html .= "<option style=\"font-weight: bold\" value=\"$option_value\">$option_content</option>";	
+			//$option_html .= "<option style=\"font-weight: bold\" value=\"$option_value\">$option_content</option>";
+			$option_html .= "<option value=\"$option_value\">$option_content</option>";
 		}
 	}
 	
