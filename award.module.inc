@@ -52,7 +52,7 @@ function award_form_alter(&$form, &$form_state, $form_id) {
       if(isset($form['field_award_application_date_value'])) {
 				$options = array(
 					'any' => '- Any -',
-					'open_soon' => 'Open soon',
+					//'open_soon' => 'Open soon', # We comment it out, but we may use it later.
 					'open' => 'Open',
 					'close' => 'Closed',
 				);
