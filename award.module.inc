@@ -41,6 +41,8 @@ function award_form_alter(&$form, &$form_state, $form_id) {
       // Reset if select Any in study area filter
       _reset_study_area_filter($form_state);
 
+			_build_study_level_markup($form);
+
       // Set default award type search to scholarship
       if(empty($_GET['field_award_type_value']))
       {
@@ -77,6 +79,8 @@ function award_form_alter(&$form, &$form_state, $form_id) {
 			// Advance prize search
 			_reset_study_area_filter($form_state);
 		
+			_build_study_level_markup($form);
+		
 			// Set default award type search to prize
 	 		if(empty($_GET['field_award_type_value']))
 	 		{
@@ -90,6 +94,8 @@ function award_form_alter(&$form, &$form_state, $form_id) {
 			// Advance grant search
 		
 			_reset_study_area_filter($form_state);
+		
+			_build_study_level_markup($form);
 		
 			// Set default award type search to grant
 	 		if(empty($_GET['field_award_type_value']))
@@ -326,6 +332,13 @@ function _reset_study_area_filter(&$form_state)
 	}
 }
 
+
+// http://drupal.stackexchange.com/questions/3590/adding-an-all-option-to-a-views-exposed-filter
+function _build_study_level_markup(&$form) {
+	$form['field_award_study_level_value']['#options'] = array("All" => t("- Any -")) + $form['field_award_study_level_value']['#options'];
+}
+
+
 // Not the exact issue, but with the idea
 // http://drupal.org/node/1783968
 function _correct_form_action_url(&$form)
@@ -422,7 +435,21 @@ function award_views_query_alter(&$view, &$query) {
 			    }
 			  }
 			}
-
+		}
+		
+		// Remove a join & where condition
+		if(isset($view->exposed_raw_input['field_award_study_level_value'])) {
+			// It is any study level
+			if(isset($view->exposed_raw_input['field_award_study_level_value']['All'])) {
+				foreach($query->where as $key_1 => &$condition_group) {
+			  	foreach($condition_group['conditions'] as $key_2 => &$condition) {
+			  		if(isset($condition['field']) && $condition['field'] == 'field_data_field_award_study_level.field_award_study_level_value') {
+			  			unset($query->table_queue['field_data_field_award_study_level']);
+			  			unset($condition_group['conditions'][$key_2]);
+			  		}
+			  	}
+			  }
+			}
 		}
 	}
 }
