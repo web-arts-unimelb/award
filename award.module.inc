@@ -15,7 +15,7 @@ function award_form_alter(&$form, &$form_state, $form_id) {
     $form['field_award_study_area_tid']['#size'] = 4;
 
 		// Change the keyword search <input title="" > 
-		$form['keys']['#attributes']['title'] = t('Enter the full word you wish to search for');
+		$form['keys']['#attributes']['title'] = t('Full word & correct spelling must be entered.');
   }
  
   // Set default search term in award type filter
@@ -283,8 +283,8 @@ function _build_dropdown_option($input)
 		}
 		else
 		{
-			//$option_html .= "<option style=\"font-weight: bold\" value=\"$option_value\">$option_content</option>";
-			$option_html .= "<option value=\"$option_value\">$option_content</option>";
+			$option_html .= "<option style=\"font-weight: bold\" value=\"$option_value\">$option_content</option>";
+			//$option_html .= "<option value=\"$option_value\">$option_content</option>";
 		}
 	}
 	
