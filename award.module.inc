@@ -286,6 +286,7 @@ function _build_dropdown_option($input)
   	}
 		elseif( _is_child($option_content) )
 		{
+			$option_content = substr_replace($option_content, '&nbsp;', 1, 0);
 			$option_html .= "<option value=\"$option_value\">&nbsp;&nbsp;$option_content</option>";
 		}
 		else
