@@ -243,8 +243,9 @@ function _build_taxonomy_dropdown($input)
 	// NOTE: Hard code
 	$html = '
 		<div class="form-item form-type-select form-item-field-award-study-area-tid">
-			<select multiple="multiple" name="field_award_study_area_tid[]" id="edit-field-award-study-area-tid" size="9" class="form-select">
-	';	
+			<select class="form-select" size="9" id="edit-field-award-study-area-tid" name="field_award_study_area_tid[]" multiple="multiple">
+	';
+
 	
 	$html .= $option_html;	
 		
@@ -289,7 +290,7 @@ function _build_dropdown_option($input)
 		}
 		else
 		{
-			$option_html .= "<option style=\"font-weight: bold\" value=\"$option_value\">$option_content</option>";
+			$option_html .= "<option class=\"award_study_area_option_tag\" value=\"$option_value\">$option_content</option>";
 			//$option_html .= "<option value=\"$option_value\">$option_content</option>";
 		}
 	}
