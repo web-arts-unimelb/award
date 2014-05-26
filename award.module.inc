@@ -445,7 +445,13 @@ function award_views_query_alter(&$view, &$query) {
 			if(isset($view->exposed_raw_input['field_award_study_level_value']['All'])) {
 				foreach($query->where as $key_1 => &$condition_group) {
 			  	foreach($condition_group['conditions'] as $key_2 => &$condition) {
-			  		if(isset($condition['field']) && $condition['field'] == 'field_data_field_award_study_level.field_award_study_level_value') {
+						// https://drupal.org/node/1062054#comment-4094520
+						// Because we eventually want to compare string, so make sure it is string.
+			  		if(
+								isset($condition['field']) && 
+								is_string($condition['field']) && 
+								($condition['field'] == 'field_data_field_award_study_level.field_award_study_level_value')
+						) {
 			  			unset($query->table_queue['field_data_field_award_study_level']);
 			  			unset($condition_group['conditions'][$key_2]);
 			  		}
